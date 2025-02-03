@@ -1,84 +1,87 @@
-// Lista de invitados con sus cupos asignados
+// Lista de invitados con sus cupos asignados 
 const invitados = {
-    "Makinson dos Santos": 1,
-    "Gisel Gomez": 1,
-    "Sandra dos Santos": 2,
-    "Mirtha Gomez": 1,
-    "Celia Da Rosa": 2,
-    "Sirley": 1,
-    "Gustavo Mello": 3,
-    "Delia Irigaray": 2,
-    "Nelly Lemos": 2,
-    "Carina Ramos": 4,
-    "Lorena Wilkins": 5,
-    "Rosana Ramos": 5,
-    "Isaura Frías": 1,
-    "Teresa Lemos": 1,
-    "Nathalia Lemos": 1,
-    "Lolo": 8,
-    "Mirian Lemos": 3,
-    "Cecilia Buere": 3,
-    "Jorge Buere": 1,
-    "Marcos Buere": 3,
-    "Mireya Lemos": 1,
-    "Yane Lemos": 3,
-    "Isabel Lemos": 2,
-    "María Pereira": 1,
-    "Marcia Lemos": 2,
-    "Gustavo Lemos": 5,
-    "Sofia Gau": 1,
-    "Claudia Lemos": 5,
-    "Fernanda Valvuena": 3,
-    "Martin Lemos": 3,
-    "Iris Almeida": 4,
-    "Tamara Mello": 4,
-    "Elisa Arriola": 1,
-    "Flavia Vieira": 1,
-    "Sonia Figueroa": 2,
-    "Jazmin Rivero": 4,
-    "Walter Ucha": 2,
-    "Marcia Rodríguez": 5,
-    "Hugo Lemos": 4,
-    "Nara Olivera": 2,
-    "Marlene Ribeiro": 2
+    "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
+    "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
+    "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
+    "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
+    "mirianlemos": { nombre: "Mirian Lemos", telefono: "091960397", cupos: 3 },
+    "claudialemos": { nombre: "Claudia Lemos", telefono: "84376566", cupos: 5 },
+    "teresalemos": { nombre: "Teresa Lemos", telefono: "095025208", cupos: 1 },
+    "nellylemos": { nombre: "Nelly Lemos", telefono: "094169819", cupos: 2 },
+    "isabellemos": { nombre: "Isabel Lemos", telefono: "99119520", cupos: 2 },
+    "marcialemos": { nombre: "Marcia Lemos", telefono: "91935095", cupos: 2 },
+    "gustavolemos": { nombre: "Gustavo Lemos", telefono: "099195234", cupos: 5 },
+    "hugolemos": { nombre: "Hugo Lemos", telefono: "091502299", cupos: 4 },
+    "yanelemos": { nombre: "Yane Lemos", telefono: "099795888", cupos: 3 },
+    "mireyalemos": { nombre: "Mireya Lemos", telefono: "091649145", cupos: 1 },
+    "cecilialemos": { nombre: "Cecilia Lemos", telefono: "098864994", cupos: 3 },
+    "rosanaramos": { nombre: "Rosana Ramos", telefono: "099526255", cupos: 5 },
+    "carinaramos": { nombre: "Carina Ramos", telefono: "099751723", cupos: 3 },
+    "fanyalmeida": { nombre: "Fany Almeida", telefono: "099932002", cupos: 2 },
+    "irisalmeida": { nombre: "Iris Almeida", telefono: "091551702", cupos: 3 },
+    "leticiagutierrez": { nombre: "Leticia Gutierrez", telefono: "097194792", cupos: 6 },
+    "gustavomello": { nombre: "Gustavo Mello", telefono: "99754570", cupos: 5 },
+    "tamaramello": { nombre: "Tamara Mello", telefono: "093876979", cupos: 4 },
+    "deliairigaray": { nombre: "Delia Irigaray", telefono: "097038076", cupos: 2 },
+    "soniafigueroa": { nombre: "Sonia Figueroa", telefono: "095511703", cupos: 2 },
+    "jazminrivero": { nombre: "Jazmin Rivero", telefono: "098062436", cupos: 3 },
+    "lorenawilkins": { nombre: "Lorena Wilkins", telefono: "094971599", cupos: 5 },
+    "marciarodriguez": { nombre: "Marcia Rodríguez", telefono: "095608377", cupos: 5 },
+    "naraolivera": { nombre: "Nara Olivera", telefono: "093363063", cupos: 2 },
+    "marlenribeiro": { nombre: "Marlene Ribeiro", telefono: "97037194", cupos: 2 },
+    "mariapereira": { nombre: "María Pereira", telefono: "91756940", cupos: 1 },
+    "patriciapereira": { nombre: "Patricia Pereira", telefono: "099888693", cupos: 2 },
+    "jorgebuere": { nombre: "Jorge buere", telefono: "099601717", cupos: 1 },
+    "emanuelmorales": { nombre: "Emanuel Morales", telefono: "098861371", cupos: 1 },
+    "celiadarosa": { nombre: "Celia da Rosa", telefono: "091324955", cupos: 1 },
+    "flaviavieira": { nombre: "Flavia Vieira", telefono: "092988314", cupos: 1 },
+    "elisaarriola": { nombre: "Elisa Arriola", telefono: "095753429", cupos: 1 },
+    "isaurafrias": { nombre: "Isaura Frías", telefono: "46223641", cupos: 1 },
+    "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
+    "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
+    "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
+
 };
 
 const CLAVE_ADMIN = "Luciana15";  // 🔒 Cambia esto por tu contraseña
 
-// Función para buscar el invitado o verificar la contraseña
+// Función para buscar el invitado por nombre o número
 function buscarInvitado(event) {
     event.preventDefault(); // Evitar recarga de página
 
-    let nombre = document.getElementById("nombre").value.trim();
+    let input = document.getElementById("nombre").value.trim();
 
-    if (nombre === "") {
-        alert("Por favor, ingrese su nombre o contraseña.");
+    if (input === "") {
+        alert("Por favor, ingrese su nombre o teléfono.");
         return;
     }
 
-    // Verificar si el nombre ingresado es la clave de acceso
-    if (nombre === CLAVE_ADMIN) {
-        document.getElementById("pagina1").style.display = "none"; // Ocultar sección de ingreso
-        document.getElementById("pagina3").style.display = "block"; // Mostrar sección de confirmaciones
-        cargarConfirmaciones(); // Cargar las confirmaciones
-        return;
+    // Verificar si el input es un número de teléfono
+    let invitadoEncontrado = null;
+
+    for (let clave in invitados) {
+        // Si el input es un número de teléfono
+        if (invitados[clave].telefono === input || clave === input) {
+            invitadoEncontrado = invitados[clave];
+            break;
+        }
     }
 
-    // Verificar si el nombre está en la lista de invitados
-    if (invitados[nombre] !== undefined) {
+    // Verificar si se encontró el invitado
+    if (invitadoEncontrado) {
         // Guardar el nombre y los cupos en localStorage
-        localStorage.setItem("nombre", nombre);
-        localStorage.setItem("cupos", invitados[nombre]);
+        localStorage.setItem("nombre", invitadoEncontrado.nombre);
+        localStorage.setItem("cupos", invitadoEncontrado.cupos);
 
         // Ocultar la primera sección y mostrar la segunda
         document.getElementById("pagina1").style.display = "none";
         document.getElementById("pagina2").style.display = "block";
 
         // Actualizar el saludo y los cupos disponibles
-        document.getElementById("nombreInvitado").textContent = nombre;
-        document.getElementById("cupos").textContent = invitados[nombre];
+        document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
+        document.getElementById("cupos").textContent = invitadoEncontrado.cupos;
     } else {
-        alert("Nombre no encontrado en la lista de invitados.");
+        alert("Nombre o teléfono no encontrado en la lista de invitados.");
     }
 }
 
@@ -140,19 +143,7 @@ function guardarConfirmacion(event) {
     }
 }
 
-// Función para cargar todas las confirmaciones
-function cargarConfirmaciones() {
-    let confirmaciones = JSON.parse(localStorage.getItem("confirmaciones")) || [];
-    const tabla = document.getElementById("tablaConfirmaciones").getElementsByTagName('tbody')[0];
-
-    confirmaciones.forEach(confirmacion => {
-        let fila = tabla.insertRow();
-        fila.insertCell(0).textContent = confirmacion.nombre;
-        fila.insertCell(1).textContent = confirmacion.asistencia;
-        fila.insertCell(2).textContent = confirmacion.lugaresConfirmados;
-    });
-}
-
 // Asignar eventos
 document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
 document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
+
