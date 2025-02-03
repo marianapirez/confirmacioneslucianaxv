@@ -1,5 +1,6 @@
 // Lista de invitados con sus cupos asignados 
 const invitados = {
+       "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
     "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
     "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
     "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
