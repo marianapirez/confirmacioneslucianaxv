@@ -1,7 +1,7 @@
 // Lista de invitados con sus cupos asignados 
 const invitados = {
        "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
-    "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
+     "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
     "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
     "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
     "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
@@ -41,6 +41,7 @@ const invitados = {
     "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
     "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
     "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
+    "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 },
 
 };
 
