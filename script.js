@@ -45,9 +45,14 @@ const invitados = {
 
 };
 
-// Función para buscar el invitado por nombre o número
-function buscarInvitado() {
+
+const CLAVE_ADMIN = "Luciana15"; 
+
+function buscarInvitado(event) {
+    event.preventDefault(); 
+
     let input = document.getElementById("nombre").value.trim();
+
     if (input === "") {
         alert("Por favor, ingrese su nombre o teléfono.");
         return;
@@ -67,6 +72,7 @@ function buscarInvitado() {
 
         document.getElementById("pagina1").style.display = "none";
         document.getElementById("pagina2").style.display = "block";
+
         document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
         document.getElementById("cupos").textContent = invitadoEncontrado.cupos;
     } else {
@@ -74,12 +80,12 @@ function buscarInvitado() {
     }
 }
 
-// Función para guardar la confirmación y enviar datos sin redirección
 function guardarConfirmacion(event) {
     event.preventDefault();
 
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
     const lugares = parseInt(document.getElementById("lugaresConfirmados").value);
+
     if (!asistencia || isNaN(lugares)) {
         alert("Por favor, complete todos los campos.");
         return;
@@ -94,35 +100,35 @@ function guardarConfirmacion(event) {
     const confirmacion = {
         nombre: localStorage.getItem("nombre"),
         asistencia: asistencia.value,
-        lugaresConfirmados: lugares
+        lugaresConfirmados: lugares,
+        redirect: false 
     };
 
-    let confirmaciones = JSON.parse(localStorage.getItem("confirmaciones")) || [];
-    confirmaciones.push(confirmacion);
-    localStorage.setItem("confirmaciones", JSON.stringify(confirmaciones));
-
-    // Enviar datos a Formspree sin redirección
     fetch("https://formspree.io/f/xkgobpwr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(confirmacion)
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById("pagina2").style.display = "none";
+            document.getElementById("pagina4").style.display = "block";
+            const mensajeGracias = document.getElementById("mensajeGracias");
+            const detalleGracias = document.getElementById("detalleGracias");
+
+            if (asistencia.value === "si") {
+                mensajeGracias.textContent = "¡Gracias por confirmar tu asistencia!";
+                detalleGracias.textContent = "Nos vemos en los quince años de Luciana.";
+            } else {
+                mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
+                detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
+            }
+        } else {
+            alert("Hubo un error al enviar tu confirmación. Intenta de nuevo.");
+        }
+    }).catch(error => {
+        alert("No se pudo enviar la confirmación. Revisa tu conexión e intenta nuevamente.");
     });
-
-    // Mostrar mensaje de agradecimiento
-    document.getElementById("pagina2").style.display = "none";
-    document.getElementById("pagina4").style.display = "block";
-    const mensajeGracias = document.getElementById("mensajeGracias");
-    const detalleGracias = document.getElementById("detalleGracias");
-
-    if (asistencia.value === "si") {
-        mensajeGracias.textContent = "¡Gracias por confirmar tu asistencia!";
-        detalleGracias.textContent = "Nos vemos en los quince años de Luciana.";
-    } else {
-        mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
-        detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
-    }
 }
 
-// Asignar eventos
 document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
 document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
