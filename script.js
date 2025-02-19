@@ -45,11 +45,11 @@ const invitados = {
 
 };
 
+const CLAVE_ADMIN = "Luciana15";  // 🔒 Cambia esto por tu contraseña
 
-const CLAVE_ADMIN = "Luciana15"; 
-
+// Función para buscar el invitado por nombre o número
 function buscarInvitado(event) {
-    event.preventDefault(); 
+    event.preventDefault(); // Evitar recarga de página
 
     let input = document.getElementById("nombre").value.trim();
 
@@ -58,21 +58,28 @@ function buscarInvitado(event) {
         return;
     }
 
+    // Verificar si el input es un número de teléfono
     let invitadoEncontrado = null;
+
     for (let clave in invitados) {
+        // Si el input es un número de teléfono
         if (invitados[clave].telefono === input || clave === input) {
             invitadoEncontrado = invitados[clave];
             break;
         }
     }
 
+    // Verificar si se encontró el invitado
     if (invitadoEncontrado) {
+        // Guardar el nombre y los cupos en localStorage
         localStorage.setItem("nombre", invitadoEncontrado.nombre);
         localStorage.setItem("cupos", invitadoEncontrado.cupos);
 
+        // Ocultar la primera sección y mostrar la segunda
         document.getElementById("pagina1").style.display = "none";
         document.getElementById("pagina2").style.display = "block";
 
+        // Actualizar el saludo y los cupos disponibles
         document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
         document.getElementById("cupos").textContent = invitadoEncontrado.cupos;
     } else {
@@ -80,8 +87,9 @@ function buscarInvitado(event) {
     }
 }
 
+// Función para guardar la confirmación de asistencia y enviar a Formspree
 function guardarConfirmacion(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evitar recarga de página
 
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
     const lugares = parseInt(document.getElementById("lugaresConfirmados").value);
@@ -91,7 +99,10 @@ function guardarConfirmacion(event) {
         return;
     }
 
+    // Obtener los lugares disponibles para el invitado desde localStorage
     const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
+
+    // Verificar si los lugares confirmados son mayores que los lugares disponibles
     if (lugares > cuposDisponibles) {
         alert("No puedes confirmar más lugares que los asignados.");
         return;
@@ -100,35 +111,40 @@ function guardarConfirmacion(event) {
     const confirmacion = {
         nombre: localStorage.getItem("nombre"),
         asistencia: asistencia.value,
-        lugaresConfirmados: lugares,
-        redirect: false 
+        lugaresConfirmados: lugares
     };
 
-    fetch("https://formspree.io/f/xkgobpwr", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(confirmacion)
-    }).then(response => {
-        if (response.ok) {
-            document.getElementById("pagina2").style.display = "none";
-            document.getElementById("pagina4").style.display = "block";
-            const mensajeGracias = document.getElementById("mensajeGracias");
-            const detalleGracias = document.getElementById("detalleGracias");
+    // Guardar la confirmación en localStorage
+    let confirmaciones = JSON.parse(localStorage.getItem("confirmaciones")) || [];
+    confirmaciones.push(confirmacion);
+    localStorage.setItem("confirmaciones", JSON.stringify(confirmaciones));
 
-            if (asistencia.value === "si") {
-                mensajeGracias.textContent = "¡Gracias por confirmar tu asistencia!";
-                detalleGracias.textContent = "Nos vemos en los quince años de Luciana.";
-            } else {
-                mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
-                detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
-            }
-        } else {
-            alert("Hubo un error al enviar tu confirmación. Intenta de nuevo.");
-        }
-    }).catch(error => {
-        alert("No se pudo enviar la confirmación. Revisa tu conexión e intenta nuevamente.");
-    });
+    // Llenar el formulario de Formspree con los datos
+    document.getElementById("formNombre").value = confirmacion.nombre;
+    document.getElementById("formAsistencia").value = confirmacion.asistencia;
+    document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
+
+    // Enviar el formulario a Formspree
+    const form = document.getElementById("formspreeForm");
+    form.submit();
+
+    // Ocultar la sección de confirmación y mostrar la de agradecimiento
+    document.getElementById("pagina2").style.display = "none";
+    document.getElementById("pagina4").style.display = "block";
+
+    // Mostrar mensaje de agradecimiento
+    const mensajeGracias = document.getElementById("mensajeGracias");
+    const detalleGracias = document.getElementById("detalleGracias");
+
+    if (asistencia.value === "si") {
+        mensajeGracias.textContent = "¡Gracias por confirmar tu asistencia!";
+        detalleGracias.textContent = "Nos vemos en los quince años de Luciana.";
+    } else {
+        mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
+        detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
+    }
 }
 
+// Asignar eventos
 document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
 document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
