@@ -1,7 +1,7 @@
-// Lista de invitados con sus cupos asignados 
+// Lista de invitados con sus cupos asignados
 const invitados = {
-       "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
-     "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
+    "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
+    "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
     "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
     "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
     "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
@@ -38,14 +38,15 @@ const invitados = {
     "flaviavieira": { nombre: "Flavia Vieira", telefono: "092988314", cupos: 1 },
     "elisaarriola": { nombre: "Elisa Arriola", telefono: "095753429", cupos: 1 },
     "isaurafrias": { nombre: "Isaura Frías", telefono: "46223641", cupos: 1 },
-    "mirthagomez": { nombre: "Mirtha Gomez", telefono: "098265107", cupos: 1 },
     "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
     "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
     "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 },
-
 };
 
 const CLAVE_ADMIN = "Luciana15";  // 🔒 Cambia esto por tu contraseña
+
+// URL del Web App de Google Apps Script
+const url = "https://script.google.com/macros/s/AKfycbx0HwdzZ-hFVZ_2BvyzJSNIOI874O_KiKB4qFWj0tBu/exec";
 
 // Función para buscar el invitado por nombre o número
 function buscarInvitado(event) {
@@ -87,9 +88,9 @@ function buscarInvitado(event) {
     }
 }
 
-// Función para guardar la confirmación de asistencia y enviar a Formspree
+// Función para guardar la confirmación de asistencia y enviar a Google Sheets
 function guardarConfirmacion(event) {
-    event.preventDefault(); // Evitar recarga de página
+    event.preventDefault();
 
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
     const lugares = parseInt(document.getElementById("lugaresConfirmados").value);
@@ -99,50 +100,42 @@ function guardarConfirmacion(event) {
         return;
     }
 
-    // Obtener los lugares disponibles para el invitado desde localStorage
-    const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
+    const nombre = localStorage.getItem("nombre");
 
-    // Verificar si los lugares confirmados son mayores que los lugares disponibles
+    // Verificar si los lugares confirmados son mayores que los asignados
+    const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
     if (lugares > cuposDisponibles) {
         alert("No puedes confirmar más lugares que los asignados.");
         return;
     }
 
-    const confirmacion = {
-        nombre: localStorage.getItem("nombre"),
-        asistencia: asistencia.value,
-        lugaresConfirmados: lugares
-    };
+    // Enviar los datos a Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbyRo-LVhpR5zLo7vrEXmK5QB2g3SkJMq8-IrFHp9CgcjeaZvdLhnspm0G7bP1w0f3R2Iw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nombre: nombre,
+            asistencia: asistencia.value,
+            lugaresConfirmados: lugares
+        })
+    }).then(() => {
+        // Mostrar mensaje diferente según la asistencia
+        const mensajeGracias = document.getElementById("mensajeGracias");
+        const detalleGracias = document.getElementById("detalleGracias");
 
-    // Guardar la confirmación en localStorage
-    let confirmaciones = JSON.parse(localStorage.getItem("confirmaciones")) || [];
-    confirmaciones.push(confirmacion);
-    localStorage.setItem("confirmaciones", JSON.stringify(confirmaciones));
+        if (asistencia.value === "si") {
+            mensajeGracias.textContent = "Gracias por confirmar tu asistencia.";
+            detalleGracias.textContent = "¡Nos vemos en mis quince años!";
+        } else {
+            mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
+            detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
+        }
 
-    // Llenar el formulario de Formspree con los datos
-    document.getElementById("formNombre").value = confirmacion.nombre;
-    document.getElementById("formAsistencia").value = confirmacion.asistencia;
-    document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
-
-    // Enviar el formulario a Formspree
-    const form = document.getElementById("formspreeForm");
-    form.submit();
-
-    // Ocultar la sección de confirmación y mostrar la de agradecimiento
-    document.getElementById("pagina2").style.display = "none";
-    document.getElementById("pagina4").style.display = "block";
-
-    // Mostrar mensaje de agradecimiento
-    const mensajeGracias = document.getElementById("mensajeGracias");
-    const detalleGracias = document.getElementById("detalleGracias");
-
-    if (asistencia.value === "si") {
-        mensajeGracias.textContent = "¡Gracias por confirmar tu asistencia!";
-        detalleGracias.textContent = "Nos vemos en los quince años de Luciana.";
-    } else {
-        mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
-        detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
-    }
+        // Ocultar la segunda sección y mostrar la cuarta
+        document.getElementById("pagina2").style.display = "none";
+        document.getElementById("pagina4").style.display = "block";
+    }).catch(error => console.error("Error:", error));
 }
 
 // Asignar eventos
