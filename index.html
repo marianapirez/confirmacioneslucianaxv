@@ -35,31 +35,6 @@
             <p>(si no asistirá escriba "0")</p>
             <input type="number" id="lugaresConfirmados" min="0" placeholder="-">
             <button id="confirmarBtn">Enviar</button>
-
-            <!-- Formulario para Formspree -->
-            <form id="formspreeForm" action="https://formspree.io/f/xkgobpwr" method="POST" style="display:none;" onsubmit="handleFormSubmit(event)">
-                <input type="text" name="nombre" id="formNombre" hidden>
-                <input type="email" name="email" id="formEmail" hidden>
-                <input type="text" name="asistencia" id="formAsistencia" hidden>
-                <input type="text" name="lugaresConfirmados" id="formLugares" hidden>
-            </form>
-        </section>
-
-        <!-- Página 3: Ver confirmaciones (solo anfitrión) -->
-        <section id="pagina3" style="display: none;">
-            <h1>Confirmaciones de Asistencia</h1>
-            <table id="tablaConfirmaciones">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Asistencia</th>
-                        <th>Lugares Confirmados</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las confirmaciones se agregarán aquí -->
-                </tbody>
-            </table>
         </section>
 
         <!-- Página 4: Agradecimiento -->
