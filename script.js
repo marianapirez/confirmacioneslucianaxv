@@ -84,7 +84,7 @@ function buscarInvitado(event) {
         document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
         document.getElementById("cupos").textContent = invitadoEncontrado.cupos;
     } else {
-        alert("Nombre o teléfono no encontrado en la lista de invitados.");
+        alert("Nombre o teléfono no encontrado en la lista de invitados, intente otra vez.");
     }
 }
 
@@ -125,10 +125,10 @@ function guardarConfirmacion(event) {
         const detalleGracias = document.getElementById("detalleGracias");
 
         if (asistencia.value === "si") {
-            mensajeGracias.textContent = "Gracias por confirmar tu asistencia.";
+            mensajeGracias.textContent = "Gracias por confirmar tu presencia.";
             detalleGracias.textContent = "¡Nos vemos en mis quince años!";
         } else {
-            mensajeGracias.textContent = "Lamentamos que no puedas asistir.";
+            mensajeGracias.textContent = "Lamento que no puedas asistir.";
             detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
         }
 
