@@ -24,12 +24,11 @@
             <p>Tienes disponibles <span id="cupos">...</span> lugares.</p>
             <p>¿Confirma su presencia?</p>
             <div class="radio-container">
-                <label class="radio-label">
-                    <input type="radio" name="asistencia" value="si"> Si
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="asistencia" value="no"> No
-                </label>
+                <input type="radio" id="si" name="asistencia" value="si">
+                <label for="si" class="radio-label">Sí</label>
+
+                <input type="radio" id="no" name="asistencia" value="no">
+                <label for="no" class="radio-label">No</label>
             </div>
             <p>¿Cuántos lugares confirma?</p>
             <p>(si no asistirá escriba "0")</p>
