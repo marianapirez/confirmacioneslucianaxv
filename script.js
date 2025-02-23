@@ -43,7 +43,7 @@ const invitados = {
     "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 }
 };
 
-  
+
   const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
   const url = "https://script.google.com/macros/s/AKfycbx0HwdzZ-hFVZ_2BvyzJSNIOI874O_KiKB4qFWj0tBu/exec"; // URL del Web App
   
@@ -103,7 +103,7 @@ const invitados = {
       lugares = parseInt(document.getElementById("lugaresConfirmados").value);
       const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
       if (isNaN(lugares) || lugares < 1 || lugares > cuposDisponibles) {
-        alert("Ingrese un número válido de lugares dentro de su cupo disponible.");
+        alert("No puede confirmar más lugares de los asignados.");
         return;
       }
     }
