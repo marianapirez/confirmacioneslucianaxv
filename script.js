@@ -72,7 +72,7 @@ const invitados = {
       document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
       document.getElementById("cupos").textContent = "Tienes disponibles " + invitadoEncontrado.cupos + " lugares.";
     } else {
-      alert("Nombre o teléfono no encontrado en la lista de invitados, intente otra vez.");
+      alert("Nombre o teléfono no encontrado en la lista de invitados, intente nuevamente.");
     }
   }
   
