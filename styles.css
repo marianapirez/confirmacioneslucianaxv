@@ -25,10 +25,10 @@ p {
     font-size: 18px;
 }
 
-/* Estilos para los inputs */
+/* Estilos para los inputs (más angostos: 50% en vez de 80%) */
 input[type="text"],
 input[type="number"] {
-    width: 80%;
+    width: 50%;
     padding: 10px;
     font-size: 16px;
     margin: 10px 0;
@@ -37,28 +37,28 @@ input[type="number"] {
     text-align: center;
 }
 
-/* Estilos para los botones */
+/* Estilos para los botones (Continuar y Enviar) */
 button {
-    background-color: #bdbdbd;
-    color: #0d1828;
-    border: none;
+    background-color: #0d1828; /* Fondo azul */
+    color: #fff;               /* Texto blanco */
+    border: 2px solid #fff;    /* Borde blanco */
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 50px;       /* Totalmente redondeados */
     font-family: "Roboto", sans-serif;
 }
 
 /* Hover para los botones */
 button:hover {
-    background-color: #a8a8a8;
+    background-color: #0d1828; /* Azul un poco más oscuro */
 }
 
 /* Efecto al presionar el botón */
 button:active {
     background-color: #0d1828;
-    color: #bdbdbd;
+    color: #fff;
 }
 
 /* Contenedor de los botones de radio */
@@ -80,25 +80,24 @@ button:active {
     padding: 12px 24px;
     background-color: #bdbdbd;
     color: #0d1828;
-    border-radius: 5px;
+    border-radius: 50px;       /* Totalmente redondeados */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     border: 2px solid transparent; /* Borde transparente por defecto */
     text-align: center;
 }
 
-/* Cambio de color al pasar el mouse */
+/* Cambio de color al pasar el mouse para radio-label */
 .radio-label:hover {
     background-color: #a8a8a8;
 }
 
 /* Estilo cuando el botón de radio está seleccionado */
 .radio-container input[type="radio"]:checked + .radio-label {
-    background-color: #555; /* Gris oscuro en vez de azul chillón */
-    color: #bdbdbd; /* Texto en gris claro */
-    border: 2px solid #bdbdbd; /* Borde claro */
+    background-color: #0d1828;
+    color: #bdbdbd;
+    border: 2px solid #bdbdbd;
     font-weight: bold;
-    transform: scale(1.05); /* Sutil agrandamiento */
-    box-shadow: 0px 0px 8px rgba(189, 189, 189, 0.5); /* Suave sombra */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 8px #0d1828;
 }
-
