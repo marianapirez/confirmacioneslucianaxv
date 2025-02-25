@@ -45,7 +45,7 @@ const invitados = {
 
 
   const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
-  const url = "https://script.google.com/macros/s/AKfycbycKJIVMPhwfBUW_d1h64rSB6gfVGJlU_2yqdamFUFYabBrfzRmvuuaHYASoSvakZTduQ/exec"; // URL del Web App
+  const url = "https://script.google.com/macros/s/AKfycby5I47CMTnRJbYI_G8pwyVT-PbMU8Vw8I4TlEjGe6x5VLF09UNb4DjTIjpJx2ZTf12u/exec"; // URL del Web App
   
   // Función para buscar el invitado por nombre o teléfono
   function buscarInvitado(event) {
