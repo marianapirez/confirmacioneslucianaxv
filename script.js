@@ -1,3 +1,4 @@
+
 // Lista de invitados con sus cupos asignados
 const invitados = {
     "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
@@ -43,12 +44,11 @@ const invitados = {
     "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 }
 };
 
-
-  const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
-  const url = "https://script.google.com/macros/s/AKfycby5I47CMTnRJbYI_G8pwyVT-PbMU8Vw8I4TlEjGe6x5VLF09UNb4DjTIjpJx2ZTf12u/exec"; // URL del Web App
+const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
+const url = "https://script.google.com/macros/s/AKfycbyMwyeXiQjHego6wD38u3Ssc5oYo5t2fc1EpG1Rj5JM0ZsSV0DySYFbQPpt7TN7UgI5/exec"; // URL del Web App
   
-  // Función para buscar el invitado por nombre o teléfono
-  function buscarInvitado(event) {
+// Función para buscar el invitado por nombre o teléfono
+function buscarInvitado(event) {
     event.preventDefault();
     const input = document.getElementById("nombre").value.trim();
     if (input === "") {
@@ -74,67 +74,77 @@ const invitados = {
     } else {
       alert("Nombre o teléfono no encontrado en la lista de invitados, intente nuevamente.");
     }
-  }
+}
   
-  // Función para mostrar u ocultar el contenedor extra según la selección
-  function actualizarCampos() {
-    const asistenciaElem = document.querySelector('input[name="asistencia"]:checked');
-    const extras = document.getElementById("extras");
-    if (asistenciaElem && asistenciaElem.value === "si") {
+// Función para mostrar u ocultar el contenedor extra según la selección
+function actualizarCampos() {
+  const asistenciaElem = document.querySelector('input[name="asistencia"]:checked');
+  const extras = document.getElementById("extras");
+  const mensajeNo = document.getElementById("mensajeNo"); // Contenedor de mensaje para "No"
+
+  if (asistenciaElem) {
+    if (asistenciaElem.value === "si") {
       extras.style.display = "block";
-    } else {
-      extras.style.display = "none";
-      document.getElementById("lugaresConfirmados").value = "";
+      mensajeNo.style.display = "none"; // Ocultar mensaje si se selecciona "Sí"
+    } else if (asistenciaElem.value === "no") {
+      extras.style.display = "none"; // Ocultar campos extra si se selecciona "No"
+      mensajeNo.style.display = "block"; // Mostrar el campo de mensaje
     }
   }
+}
   
-  // Función para guardar la confirmación de asistencia y enviar a Google Sheets
-  function guardarConfirmacion(event) {
-    event.preventDefault();
-    const asistenciaElem = document.querySelector('input[name="asistencia"]:checked');
-    if (!asistenciaElem) {
-      alert("Por favor, indique si asistirá o no.");
+// Función para guardar la confirmación de asistencia y enviar a Google Sheets
+function guardarConfirmacion(event) {
+  event.preventDefault();
+  const asistenciaElem = document.querySelector('input[name="asistencia"]:checked');
+  if (!asistenciaElem) {
+    alert("Por favor, indique si asistirá o no.");
+    return;
+  }
+  const asistencia = asistenciaElem.value;
+  const nombre = localStorage.getItem("nombre");
+  let lugares = 0;
+  if (asistencia === "si") {
+    lugares = parseInt(document.getElementById("lugaresConfirmados").value);
+    const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
+    if (isNaN(lugares) || lugares < 1 || lugares > cuposDisponibles) {
+      alert("No puede confirmar más lugares de los asignados.");
       return;
     }
-    const asistencia = asistenciaElem.value;
-    const nombre = localStorage.getItem("nombre");
-    let lugares = 0;
-    if (asistencia === "si") {
-      lugares = parseInt(document.getElementById("lugaresConfirmados").value);
-      const cuposDisponibles = parseInt(localStorage.getItem("cupos"));
-      if (isNaN(lugares) || lugares < 1 || lugares > cuposDisponibles) {
-        alert("No puede confirmar más lugares de los asignados.");
-        return;
-      }
-    }
-    fetch(url, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        nombre: nombre,
-        asistencia: asistencia,
-        lugaresConfirmados: lugares
-      })
-    }).then(() => {
-      const mensajeGracias = document.getElementById("mensajeGracias");
-      const detalleGracias = document.getElementById("detalleGracias");
-      if (asistencia === "si") {
-        mensajeGracias.textContent = "Gracias por confirmar tu presencia.";
-        detalleGracias.textContent = "¡Nos vemos en mis quince años!";
-      } else {
-        mensajeGracias.textContent = "Lamento que no puedas asistir.";
-        detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
-      }
-      document.getElementById("pagina2").style.display = "none";
-      document.getElementById("pagina4").style.display = "block";
-    }).catch(error => console.error("Error:", error));
   }
+
+  // Obtenemos el mensaje si seleccionó "No"
+  const mensaje = asistencia === "no" ? document.getElementById("mensajeQuinceañera").value : '';
+
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nombre: nombre,
+      asistencia: asistencia,
+      lugaresConfirmados: lugares,
+      mensaje: mensaje // Enviar el mensaje si "No" fue seleccionado
+    })
+  }).then(() => {
+    const mensajeGracias = document.getElementById("mensajeGracias");
+    const detalleGracias = document.getElementById("detalleGracias");
+    if (asistencia === "si") {
+      mensajeGracias.textContent = "Gracias por confirmar tu presencia.";
+      detalleGracias.textContent = "¡Nos vemos en mis quince años!";
+    } else {
+      mensajeGracias.textContent = "Lamento que no puedas asistir.";
+      detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
+    }
+
+    document.getElementById("pagina2").style.display = "none";
+    document.getElementById("pagina4").style.display = "block";
+  }).catch(error => console.error("Error:", error));
+}
   
-  // Asignar eventos a los botones y a los radio inputs
-  document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
-  document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
-  document.querySelectorAll('input[name="asistencia"]').forEach(input => {
-    input.addEventListener("change", actualizarCampos);
-  });
-  
+// Asignar eventos a los botones y a los radio inputs
+document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
+document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
+document.querySelectorAll('input[name="asistencia"]').forEach(input => {
+  input.addEventListener("change", actualizarCampos);
+});
