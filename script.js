@@ -1,7 +1,6 @@
 
-// Lista de invitados con sus cupos asignados
+// Lista de invitados Lu
 const invitados = {
-    "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
     "matiasrossi": { nombre: "Matías Rossi", telefono: "098151725", cupos: 2 },
 "katherincuello": { nombre: "Katherin Cuello", telefono: "098117012", cupos: 1 },
 "rominaramirez": { nombre: "Romina Ramirez", telefono: "098495993", cupos: 1 },
@@ -19,6 +18,8 @@ const invitados = {
 "antonellaprestes": { nombre: "Antonella Prestes", telefono: "58070833", cupos: 1 },
 "camilagarcia": { nombre: "Camila García", telefono: "098126821", cupos: 1 },
 "natachamickaely": { nombre: "Natacha Mickaely", telefono: "092443936", cupos: 1 },
+// Lista de invitados Familia
+"anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
     "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
     "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
     "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
@@ -56,11 +57,10 @@ const invitados = {
     "flaviavieira": { nombre: "Flavia Vieira", telefono: "092988314", cupos: 1 },
     "elisaarriola": { nombre: "Elisa Arriola", telefono: "095753429", cupos: 1 },
     "isaurafrias": { nombre: "Isaura Frías", telefono: "46223641", cupos: 1 },
-    "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
     "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
-    "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 }
-    
-    
+    "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 },
+    // Lista de invitados Mar
+    "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 }
 };
 
 const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
