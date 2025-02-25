@@ -2,6 +2,23 @@
 // Lista de invitados con sus cupos asignados
 const invitados = {
     "anadossantos": { nombre: "Ana dos Santos", telefono: "095608354", cupos: 5 },
+    "matiasrossi": { nombre: "Matías Rossi", telefono: "098151725", cupos: 2 },
+"katherincuello": { nombre: "Katherin Cuello", telefono: "098117012", cupos: 1 },
+"rominaramirez": { nombre: "Romina Ramirez", telefono: "098495993", cupos: 1 },
+"lucasfurtado": { nombre: "Lucas Furtado", telefono: "091037554", cupos: 1 },
+"federicorobledo": { nombre: "Federico Robledo", telefono: "091916928", cupos: 1 },
+"alanolivera": { nombre: "Alan Olivera", telefono: "099354863", cupos: 1 },
+"antonelladasilveira": { nombre: "Antonella da Silveira", telefono: "092643421", cupos: 1 },
+"antonellaperezini": { nombre: "Antonella Perezini", telefono: "092957006", cupos: 1 },
+"anthonelamachado": { nombre: "Anthonela Machado", telefono: "59043122", cupos: 1 },
+"pilarsosa": { nombre: "Pilar Sosa", telefono: "099411650", cupos: 1 },
+"brunoprofumo": { nombre: "Bruno Profumo", telefono: "094464735", cupos: 1 },
+"ceciliacruz": { nombre: "Cecilia Cruz", telefono: "099776241", cupos: 1 },
+"evaandrade": { nombre: "Eva Andrade", telefono: "092906148", cupos: 1 },
+"beatrizandrade": { nombre: "Beatriz Andrade", telefono: "091361059", cupos: 1 },
+"antonellaprestes": { nombre: "Antonella Prestes", telefono: "58070833", cupos: 1 },
+"camilagarcia": { nombre: "Camila García", telefono: "098126821", cupos: 1 },
+"natachamickaely": { nombre: "Natacha Mickaely", telefono: "092443936", cupos: 1 },
     "makinsondossantos": { nombre: "Makinson dos Santos", telefono: "095608348", cupos: 1 },
     "sandradossantos": { nombre: "Sandra dos Santos", telefono: "096112224", cupos: 2 },
     "fanygomez": { nombre: "Fany Gomez", telefono: "097929465", cupos: 1 },
@@ -33,7 +50,7 @@ const invitados = {
     "marlenribeiro": { nombre: "Marlene Ribeiro", telefono: "97037194", cupos: 2 },
     "mariapereira": { nombre: "María Pereira", telefono: "91756940", cupos: 1 },
     "patriciapereira": { nombre: "Patricia Pereira", telefono: "099888693", cupos: 2 },
-    "jorgebuere": { nombre: "Jorge buere", telefono: "099601717", cupos: 1 },
+    "jorgebuere": { nombre: "Jorge Buere", telefono: "099601717", cupos: 1 },
     "emanuelmorales": { nombre: "Emanuel Morales", telefono: "098861371", cupos: 1 },
     "celiadarosa": { nombre: "Celia da Rosa", telefono: "091324955", cupos: 1 },
     "flaviavieira": { nombre: "Flavia Vieira", telefono: "092988314", cupos: 1 },
@@ -42,6 +59,8 @@ const invitados = {
     "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
     "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
     "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 }
+    
+    
 };
 
 const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
