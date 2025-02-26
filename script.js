@@ -60,7 +60,8 @@ const invitados = {
     "albertomoreno": { nombre: "Alberto Moreno", telefono: "098743203", cupos: 1 },
     "fernandavalbuena": { nombre: "Fernanda Valbuena", telefono: "091208406", cupos: 3 },
     // Lista de invitados Mar
-    "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 }
+    "biancarodriguez": { nombre: "Bianca Rodríguez", telefono: "092789970", cupos: 1 },
+    "marianapirez": { nombre: "Mariana Pirez", telefono: "093564232", cupos: 1 }
 };
 
 const CLAVE_ADMIN = "Luciana15"; // Cambia esto por tu contraseña
