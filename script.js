@@ -175,7 +175,7 @@ function guardarConfirmacion(event) {
     const mensajeGracias = document.getElementById("mensajeGracias");
     const detalleGracias = document.getElementById("detalleGracias");
     if (asistencia === "si") {
-      mensajeGracias.textContent = "Gracias por confirmar tu presencia.";
+      mensajeGracias.textContent = "Gracias por confirmar tu asistencia.";
       detalleGracias.textContent = "¡Nos vemos en mis quince años!";
     } else {
       mensajeGracias.textContent = "Lamento que no puedas asistir.";
