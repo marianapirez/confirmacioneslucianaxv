@@ -100,35 +100,30 @@ function buscarInvitado(event) {
   }
   
   // Normalizar el nombre
-input = normalizarNombre(input);
+  input = normalizarNombre(input);
 
-let invitadoEncontrado = null;
-for (let clave in invitados) {
-  if (invitados[clave].telefono === input || clave === input) {
-    invitadoEncontrado = invitados[clave];
-    break;
+  let invitadoEncontrado = null;
+  for (let clave in invitados) {
+    if (invitados[clave].telefono === input || clave === input) {
+      invitadoEncontrado = invitados[clave];
+      break;
+    }
   }
-}
-
-if (invitadoEncontrado) {
-  localStorage.setItem("nombre", invitadoEncontrado.nombre);
-  localStorage.setItem("cupos", invitadoEncontrado.cupos);
-  document.getElementById("pagina1").style.display = "none";
-  document.getElementById("pagina2").style.display = "block";
-  document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
   
-  // Cambiar el texto de los lugares dependiendo de si hay 1 o más
-  const lugaresDisponibles = invitadoEncontrado.cupos;
-  
-  // Aquí ajustamos el texto según el número de lugares disponibles
-  const mensajeLugares = lugaresDisponibles === 1 
-    ? `Tienes disponible 1 lugar.` 
-    : `Tienes disponibles ${lugaresDisponibles} lugares.`;
-  
-  document.getElementById("cupos").textContent = mensajeLugares;
-} else {
-  alert("Nombre o teléfono no encontrado en la lista de invitados.");
-}
+  if (invitadoEncontrado) {
+    localStorage.setItem("nombre", invitadoEncontrado.nombre);
+    localStorage.setItem("cupos", invitadoEncontrado.cupos);
+    document.getElementById("pagina1").style.display = "none";
+    document.getElementById("pagina2").style.display = "block";
+    document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
+    
+    // Cambiar el texto de los lugares dependiendo de si hay 1 o más
+    const lugaresDisponibles = invitadoEncontrado.cupos;
+    const mensajeLugares = lugaresDisponibles === 1 ? `Tienes ${lugaresDisponibles} lugar disponible` : `Tienes ${lugaresDisponibles} lugares disponibles`;
+    document.getElementById("cupos").textContent = mensajeLugares;
+  } else {
+    alert("Nombre o teléfono no encontrado en la lista de invitados.");
+  }
 }
 
 // Función para mostrar campos adicionales según la asistencia
