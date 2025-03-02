@@ -104,26 +104,26 @@ function buscarInvitado(event) {
 
   let invitadoEncontrado = null;
   for (let clave in invitados) {
-   if (invitadoEncontrado) {
-  localStorage.setItem("nombre", invitadoEncontrado.nombre);
-  localStorage.setItem("cupos", invitadoEncontrado.cupos);
-  document.getElementById("pagina1").style.display = "none";
-  document.getElementById("pagina2").style.display = "block";
-  document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
+    if (invitados[clave].telefono === input || clave === input) {
+      invitadoEncontrado = invitados[clave];
+      break;
+    }
+  }
   
-  // Obtener la cantidad de lugares disponibles
-  const lugaresDisponibles = invitadoEncontrado.cupos;
-
-  // Cambiar el texto de los lugares dependiendo de si hay 1 o más
-  const mensajeLugares = lugaresDisponibles === 1 
-    ? `Tienes ${lugaresDisponibles} lugar disponible`  // Singular
-    : `Tienes ${lugaresDisponibles} lugares disponibles`; // Plural
-  
-  document.getElementById("cupos").textContent = mensajeLugares;  // Mostrar el mensaje adecuado
-} else {
-  alert("Nombre o teléfono no encontrado en la lista de invitados.");
-}
-
+  if (invitadoEncontrado) {
+    localStorage.setItem("nombre", invitadoEncontrado.nombre);
+    localStorage.setItem("cupos", invitadoEncontrado.cupos);
+    document.getElementById("pagina1").style.display = "none";
+    document.getElementById("pagina2").style.display = "block";
+    document.getElementById("nombreInvitado").textContent = invitadoEncontrado.nombre;
+    
+    // Cambiar el texto de los lugares dependiendo de si hay 1 o más
+    const lugaresDisponibles = invitadoEncontrado.cupos;
+    const mensajeLugares = lugaresDisponibles === 1 ? `Tienes ${lugaresDisponibles} lugar disponible` : `Tienes ${lugaresDisponibles} lugares disponibles`;
+    document.getElementById("cupos").textContent = mensajeLugares;
+  } else {
+    alert("Nombre o teléfono no encontrado en la lista de invitados.");
+  }
 }
 
 // Función para mostrar campos adicionales según la asistencia
